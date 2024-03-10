@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SalaryPeg</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Start Open Web Analytics Tracker -->
+  <script type="text/javascript">
+    //<![CDATA[
+    var owa_baseUrl = 'http://pegmysalary.epizy.com/';
+    var owa_cmds = owa_cmds || [];
+    owa_cmds.push(['setSiteId', 'f1a2b492bccbaf2edfd7ffcb83a4db9c']);
+    owa_cmds.push(['trackPageView']);
+    owa_cmds.push(['trackClicks']);
+
+    (function() {
+      var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
+      owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
+      _owa.src = owa_baseUrl + 'modules/base/dist/owa.tracker.js';
+      var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
+    }());
+    //]]>
+  </script>
+  <!-- End Open Web Analytics Code -->
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>

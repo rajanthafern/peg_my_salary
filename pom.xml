@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.salaries.pegmysalaries</groupId>
+    <artifactId>pegmysalaries</artifactId>
+    <name>pegmysalaries</name>
+    <description>pegmysalaries</description>
+    <packaging>war</packaging>
+    <version>0.0.1</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <warName>PEG_MY_SALARIES_${version}</warName>
+                    <warSourceExcludes>**</warSourceExcludes>
+                    <nonFilteredFileExtensions>
+                        <!-- default value contains jpg,jpeg,gif,bmp,png -->
+                        <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>svg</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>ico</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                    <webResources>
+                        <resource>
+                            <directory>dist/salary-peg</directory>
+                            <!-- override the destination directory for this resource -->
+                            <targetPath />
+                            <!-- enable filtering -->
+                            <filtering>true</filtering>
+                        </resource>
+                        <resource>
+                            <directory>src/assets</directory>
+                            <!-- override the destination directory for this resource -->
+                            <targetPath>assets</targetPath>
+                            <!-- enable filtering -->
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                  <webXml>web.xml</webXml>
+                  <containerConfigXML>context.xml</containerConfigXML>
+                  <failOnMissingWebXml>true</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>copy</goal></goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.github.jsimone</groupId>
+                                    <artifactId>webapp-runner-main</artifactId>
+                                    <version>8.5.23.0</version>
+                                    <destFileName>webapp-runner.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <!-- Plugin to execute command  "npm install" and "npm run build" inside /angular directory -->
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.6</version>
+
+                <configuration>
+                    <workingDirectory>./</workingDirectory>
+                </configuration>
+                <executions>
+                    <!-- It will install nodejs and npm -->
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v10.16.0</nodeVersion>
+                            <npmVersion>6.9.0</npmVersion>
+                        </configuration>
+                    </execution>
+
+                    <!-- It will execute command "npm install" inside "/angular" directory -->
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                     <!--It will execute command "npm lint"-->
+                    <!--<execution>
+                        <id>npm lint</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run lint</arguments>
+                        </configuration>
+                    </execution>-->
+
+                    <!-- It will set current version of npm to use known registrars-->
+                    <execution>
+                        <id>npm certificate set</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>config set strict-ssl false</arguments>
+                        </configuration>
+                    </execution>
+
+                    <!-- It will execute command "npm build" inside "/angular" directory to clean and create "/dist" directory-->
+                    <execution>
+                        <id>npm build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>PEG_MY_SALARIES_${version}</finalName>
+    </build>
+
+</project>

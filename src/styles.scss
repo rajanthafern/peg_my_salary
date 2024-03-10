@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+html, body {
+  height: 100vh;
+  width:100%;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+  overflow-x: hidden
+}
